@@ -79,7 +79,8 @@ export function setupAssembly() {
 			]);
 			if (!active) return;
 			renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: window.innerWidth > 760, powerPreference: 'low-power' });
-			renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+			const pixelRatioLimit = window.matchMedia('(max-width: 760px)').matches ? 1.25 : 1.5;
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, pixelRatioLimit));
 			renderer.outputColorSpace = THREE.SRGBColorSpace;
 			renderer.toneMapping = THREE.ACESFilmicToneMapping;
 			renderer.toneMappingExposure = 1;

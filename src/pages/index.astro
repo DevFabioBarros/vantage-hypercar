@@ -29,6 +29,8 @@ const optimizedFilmPoster = await getImage({ src: filmPoster, format: 'webp', qu
 					class="parallax-image"
 					data-parallax
 					src={heroImage}
+					widths={[480, 768, 1024, 1440, 1672]}
+					sizes="100vw"
 					alt="Hypercar VANTAGE em preto ônix diante de uma estrada costeira ao amanhecer"
 					priority
 					decoding="async"
@@ -146,6 +148,7 @@ const optimizedFilmPoster = await getImage({ src: filmPoster, format: 'webp', qu
 					<p class="assembly-instruction">Cada movimento revela a precisão de suas partes.</p>
 				</div>
 				<div class="assembly-visual" aria-hidden="true">
+					<Image class="assembly-poster" src={aurelionImage} alt="" loading="lazy" decoding="async" />
 					<canvas data-assembly-canvas></canvas>
 					<div class="assembly-orbit"></div>
 				</div>
