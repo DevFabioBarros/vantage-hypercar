@@ -1,46 +1,30 @@
-# Astro Starter Kit: Basics
+# VANTAGE
+
+Landing page conceitual de uma marca fictícia de hypercars, feita com Astro, HTML, CSS e JavaScript nativo.
+
+## Desenvolvimento
+
+Requer Node.js 22.12 ou superior.
 
 ```sh
-npm create astro@latest -- --template basics
+npm ci
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Verificações
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```sh
+npm run build
+node --test
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Estrutura
 
-## 🧞 Commands
+- `src/pages/index.astro`: conteúdo e estrutura da página.
+- `src/styles/`: estilos globais e visuais da VANTAGE.
+- `src/scripts/`: parallax, animações e interações.
+- `public/images/vantage/`: imagens da página.
+- `public/comercial.mp4`: filme usado na seção com zoom por rolagem.
+- `docs/superpowers/`: especificação e plano de implementação.
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Os modelos, a marca e as especificações de desempenho apresentados são ficcionais.
