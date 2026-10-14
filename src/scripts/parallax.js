@@ -7,7 +7,7 @@ export function getParallaxOffset({ top, height, viewportHeight, maxOffset = 24 
 
 export function setupParallax() {
 	const images = document.querySelectorAll('[data-parallax]');
-	if (!images.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+	if (!images.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return () => {};
 
 	let frame = 0;
 	const update = () => {
@@ -18,7 +18,7 @@ export function setupParallax() {
 
 			const maxOffset = window.innerWidth < 720 ? 8 : 24;
 			const offset = getParallaxOffset({ top: rect.top, height: rect.height, viewportHeight: window.innerHeight, maxOffset });
-			image.style.setProperty('--parallax-y', `${offset.toFixed(2)}px`);
+			image.style.setProperty('--parallax-y', String(offset.toFixed(2)) + 'px');
 		}
 	};
 	const scheduleUpdate = () => {
@@ -28,4 +28,10 @@ export function setupParallax() {
 	window.addEventListener('scroll', scheduleUpdate, { passive: true });
 	window.addEventListener('resize', scheduleUpdate, { passive: true });
 	scheduleUpdate();
+
+	return () => {
+		window.removeEventListener('scroll', scheduleUpdate);
+		window.removeEventListener('resize', scheduleUpdate);
+		if (frame) window.cancelAnimationFrame(frame);
+	};
 }

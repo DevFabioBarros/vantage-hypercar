@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 
 const {
@@ -24,6 +25,7 @@ const {
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 		<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
 		<meta name="generator" content={Astro.generator} />
+		<ClientRouter />
 		<title>{title}</title>
 	</head>
 	<body>

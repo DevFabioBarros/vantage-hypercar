@@ -1,41 +1,36 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { getImage, Image } from 'astro:assets';
+import heroImage from '../assets/images/vantage/hero.jpg';
+import bumperImage from '../assets/images/vantage/front-bumper-v2.jpg';
+import engineImage from '../assets/images/vantage/v12-engine-v2.jpg';
+import cockpitImage from '../assets/images/vantage/cockpit-bespoke-v3.jpg';
+import filmPoster from '../assets/images/vantage/film-start.jpg';
+import aurelionImage from '../assets/images/vantage/aurelion.jpg';
+import sereinImage from '../assets/images/vantage/serein-track.jpg';
+import eclipseImage from '../assets/images/vantage/eclipse-atelier.jpg';
+import closingImage from '../assets/images/vantage/closing-horizon.jpg';
 import '../styles/vantage.css';
+
+const optimizedFilmPoster = await getImage({ src: filmPoster, format: 'webp', quality: 80 });
 ---
 
 <Layout>
 	<main class="site-shell" id="inicio">
 		<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-		<header class="site-header">
-			<a class="wordmark" href="#inicio" aria-label="VANTAGE — início">VANTAGE</a>
-			<nav class="desktop-nav" aria-label="Navegação principal">
-				<a href="#design">Design</a>
-				<a href="#engenharia">Engenharia</a>
-				<a href="#modelos">Modelos</a>
-				<a class="nav-cta" href="#apresentacao">Solicitar uma apresentação <span aria-hidden="true">↗</span></a>
-			</nav>
-			<details class="mobile-nav">
-				<summary>Menu <span aria-hidden="true">＋</span></summary>
-				<nav aria-label="Navegação móvel">
-					<a href="#design">Design</a>
-					<a href="#engenharia">Engenharia</a>
-					<a href="#modelos">Modelos</a>
-					<a href="#apresentacao">Solicitar uma apresentação privada</a>
-				</nav>
-			</details>
-		</header>
+		<SiteHeader />
 
 		<section class="hero" id="conteudo" aria-labelledby="hero-title">
 			<div class="hero-media">
-				<img
+				<Image
 					class="parallax-image"
 					data-parallax
-					src="/images/vantage/hero.jpg"
-					alt="Hypercar VANTAGE em prata-titânio diante de uma estrada costeira ao amanhecer"
-					width="1672"
-					height="941"
-					fetchpriority="high"
+					src={heroImage}
+					alt="Hypercar VANTAGE em preto ônix diante de uma estrada costeira ao amanhecer"
+					priority
 					decoding="async"
 				/>
 			</div>
@@ -89,7 +84,7 @@ import '../styles/vantage.css';
 			</div>
 			<article class="craftsmanship-chapter chapter-design" aria-labelledby="chapter-design-title">
 				<figure class="chapter-image media-frame" data-reveal="image">
-					<img src="/images/vantage/front-bumper-v2.jpg" alt="Emblema VANTAGE no para-choque dianteiro, junto à roda forjada e detalhes em fibra de carbono" width="1672" height="941" loading="lazy" decoding="async" />
+					<Image src={bumperImage} alt="Emblema VANTAGE no para-choque dianteiro, junto à roda forjada e detalhes em fibra de carbono" loading="lazy" decoding="async" />
 				</figure>
 				<div class="chapter-copy" data-reveal="text">
 					<p class="chapter-index">01 / Design</p>
@@ -100,7 +95,7 @@ import '../styles/vantage.css';
 
 			<article class="craftsmanship-chapter chapter-engine" id="engenharia" aria-labelledby="engineering-title">
 				<figure class="chapter-image media-frame" data-reveal="image">
-					<img src="/images/vantage/v12-engine-v2.jpg" alt="Motor V12 VANTAGE em uma oficina de montagem, com detalhes metálicos usinados" width="1672" height="941" loading="lazy" decoding="async" />
+					<Image src={engineImage} alt="Motor V12 VANTAGE em uma oficina de montagem, com detalhes metálicos usinados" loading="lazy" decoding="async" />
 				</figure>
 				<div class="chapter-copy" data-reveal="text">
 					<p class="chapter-index">02 / Engenharia</p>
@@ -112,7 +107,7 @@ import '../styles/vantage.css';
 
 			<article class="craftsmanship-chapter chapter-interior" aria-labelledby="interior-title">
 				<figure class="chapter-image media-frame" data-reveal="image">
-					<img src="/images/vantage/cockpit-bespoke-v3.jpg" alt="Cockpit artesanal da VANTAGE com volante à esquerda, couro costurado à mão e logotipo central" width="1672" height="941" loading="lazy" decoding="async" />
+					<Image src={cockpitImage} alt="Cockpit artesanal da VANTAGE com volante à esquerda, couro costurado à mão e logotipo central" loading="lazy" decoding="async" />
 				</figure>
 				<div class="chapter-copy" data-reveal="text">
 					<p class="chapter-index">03 / Interior</p>
@@ -143,20 +138,39 @@ import '../styles/vantage.css';
 			<p class="specifications-note">Especificações fictícias, criadas para este projeto visual. Não representam um veículo homologado.</p>
 		</section>
 
+		<section class="assembly-scroll section-pad" id="montagem" data-scroll-assembly aria-labelledby="assembly-title">
+			<div class="assembly-stage">
+				<div class="assembly-heading" data-assembly-copy>
+					<p class="eyebrow">Estudo tridimensional · engenharia em camadas</p>
+					<h2 id="assembly-title">A forma nasce<br /><em>da engenharia.</em></h2>
+					<p class="assembly-instruction">Cada movimento revela a precisão de suas partes.</p>
+				</div>
+				<div class="assembly-visual" aria-hidden="true">
+					<canvas data-assembly-canvas></canvas>
+					<div class="assembly-orbit"></div>
+				</div>
+				<div class="assembly-footnote">
+					<p data-assembly-status role="status">A visualização 3D será carregada ao chegar aqui.</p>
+					<div class="assembly-progress-track" aria-hidden="true"><span data-assembly-progress></span></div>
+					<p class="assembly-credit">Modelo: <a href="https://sketchfab.com/3d-models/lamborghini-centenario-lp-770-interior-sdc-d679af35b5694301a185c7454a700c73" target="_blank" rel="noreferrer">Lamborghini Centenario LP-770 · SDC PERFORMANCE</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a></p>
+				</div>
+			</div>
+		</section>
 		<section class="film-scroll" id="filme" data-scroll-film aria-labelledby="film-title">
 			<div class="film-stage">
 				<div class="film-media">
 					<video
 						class="film-video"
 						data-scroll-video
-						src="/comercial.mp4"
-						poster="/images/vantage/film-start.jpg"
+						poster={optimizedFilmPoster.src}
 						muted
 						loop
 						playsinline
 						preload="none"
 						aria-hidden="true"
-					></video>
+					>
+						<source src="/comercial.mp4" type="video/mp4" />
+					</video>
 				</div>
 				<div class="film-copy">
 					<p class="eyebrow">Aurelion · em movimento</p>
@@ -209,7 +223,7 @@ import '../styles/vantage.css';
 
 			<article class="model model-aurelion">
 				<a class="model-image media-frame" data-reveal="image" href="#apresentacao" aria-label="Conheça a VANTAGE Aurelion">
-					<img src="/images/vantage/aurelion.jpg" alt="A VANTAGE Aurelion em perfil diante de uma paisagem costeira" width="1672" height="941" loading="lazy" decoding="async" />
+					<Image src={aurelionImage} alt="A VANTAGE Aurelion em preto ônix, em perfil diante de um atelier e montanhas ao amanhecer" loading="lazy" decoding="async" />
 				</a>
 				<div class="model-copy" data-reveal="text">
 					<div><p class="eyebrow">Grand touring</p><h3>Aurelion</h3></div>
@@ -221,7 +235,7 @@ import '../styles/vantage.css';
 			<div class="model-pair">
 				<article class="model model-secondary">
 					<a class="model-image media-frame" data-reveal="image" href="#apresentacao" aria-label="Conheça a VANTAGE Serein">
-						<img src="/images/vantage/serein-track.jpg" alt="A VANTAGE Serein em movimento no circuito ao anoitecer, sobre o asfalto molhado" width="1672" height="941" loading="lazy" decoding="async" />
+						<Image src={sereinImage} alt="A VANTAGE Serein em preto ônix em movimento no circuito ao anoitecer, sobre o asfalto molhado" loading="lazy" decoding="async" />
 					</a>
 					<div class="model-copy" data-reveal="text">
 						<div><p class="eyebrow">Pista</p><h3>Serein</h3></div>
@@ -231,7 +245,7 @@ import '../styles/vantage.css';
 				</article>
 				<article class="model model-secondary model-eclipse">
 					<a class="model-image media-frame" data-reveal="image" href="#apresentacao" aria-label="Conheça a VANTAGE Éclipse">
-						<img src="/images/vantage/eclipse-atelier.jpg" alt="Vista traseira da VANTAGE Éclipse bespoke no atelier particular da marca" width="1672" height="941" loading="lazy" decoding="async" />
+						<Image src={eclipseImage} alt="Vista traseira da VANTAGE Éclipse bespoke em preto ônix, no atelier particular da marca" loading="lazy" decoding="async" />
 					</a>
 					<div class="model-copy" data-reveal="text">
 						<div><p class="eyebrow">Edição artesanal</p><h3>Éclipse</h3></div>
@@ -251,31 +265,13 @@ import '../styles/vantage.css';
 		</section>
 
 		<section class="closing-image" id="encerramento" aria-labelledby="closing-title">
-			<img src="/images/vantage/closing-horizon.jpg" alt="Hypercar VANTAGE prateado diante de um arco monumental de pedra ao amanhecer" width="1664" height="936" loading="lazy" decoding="async" />
+			<Image src={closingImage} alt="Hypercar VANTAGE em preto ônix diante de um arco monumental de pedra ao amanhecer" loading="lazy" decoding="async" />
 			<div class="closing-image-copy section-pad">
 				<p class="eyebrow">VANTAGE · Aurelion</p>
 				<h2 id="closing-title">O horizonte<br /><em>não é um limite.</em></h2>
 			</div>
 		</section>
 
-		<footer class="site-footer">
-			<div class="footer-invitation">
-				<div>
-					<p class="eyebrow">Atelier VANTAGE</p>
-					<h2>Há detalhes que<br /><em>pedem presença.</em></h2>
-				</div>
-				<a class="footer-action" href="#apresentacao">Solicitar apresentação privada <span aria-hidden="true">↗</span></a>
-			</div>
-			<div class="footer-base">
-				<a class="wordmark" href="#inicio" aria-label="VANTAGE — voltar ao início">VANTAGE</a>
-				<p>© 2026 VANTAGE · Projeto conceitual</p>
-				<nav aria-label="Navegação do rodapé">
-					<a href="#design">Design</a>
-					<a href="#engenharia">Engenharia</a>
-					<a href="#modelos">Modelos</a>
-				</nav>
-				<a class="footer-top" href="#inicio">Voltar ao início <span aria-hidden="true">↑</span></a>
-			</div>
-		</footer>
+		<SiteFooter />
 	</main>
 </Layout>
